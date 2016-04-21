@@ -14,8 +14,9 @@ public class TaskMenu {
   private ProjectMember projectMember;
   private Item item;
   
-  public void service(ProjectMember projectMember) {
+  public void service(ProjectMember projectMember, Item item) {
     this.projectMember = projectMember;
+    this.item = item;
     String input = null;
     do {
       input = prompt();

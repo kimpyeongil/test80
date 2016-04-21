@@ -17,8 +17,8 @@ public class ProjectMenu {
   private Item item;
   
   public void service(ProjectMember projectMember, Item item) {
-    this.item = item;
     this.projectMember = projectMember;
+    this.item = item;
     String input = null;
     do {
       input = prompt();
@@ -86,11 +86,11 @@ public class ProjectMenu {
   }
   
   private void toBoard() {
-    boardMenu.service(projectMember);
+    boardMenu.service(projectMember, item);
   }
   
   private void toTask() {
-    taskMenu.service(projectMember);
+    taskMenu.service(projectMember, item);
   }
   
   private void deleteProject() {

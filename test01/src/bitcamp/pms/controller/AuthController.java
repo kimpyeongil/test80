@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 import bitcamp.pms.annotation.Controller;
 import bitcamp.pms.annotation.RequestMapping;
+import bitcamp.pms.context.ApplicationContext;
 import bitcamp.pms.dao.MemberDao;
+import bitcamp.pms.domain.Item;
 import bitcamp.pms.domain.Member;
 import bitcamp.pms.util.CommandUtil;
 import bitcamp.pms.util.PatternTest;
@@ -15,6 +17,7 @@ public class AuthController {
   private Scanner keyScan;
   private MemberDao memberDao;
   private Session session;
+  private Item item;
 
   public void setSession(Session session) {
     this.session = session;
@@ -32,7 +35,8 @@ public class AuthController {
     return (Member)session.getAttribute("loginUser");
   }
 
-  public void service() {
+  public void service(Item item) {
+    this.item = item;
     String input = null;
     while (true) {
       System.out.println("1)로그인  2)회원가입  9) 종료");
@@ -73,6 +77,8 @@ public class AuthController {
       return false;
     }
     session.setAttribute("loginUser", member);
+    ApplicationContext appContext = item.getAppContext();
+    appContext.addBean("loginMember", member);
     System.out.printf("환영합니다. %s님!\n", member.getName());
     return true;
   } 

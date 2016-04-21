@@ -6,9 +6,9 @@
 <mapper namespace="BoardDao">
 
   <resultMap type="Board" id="BoardMap">
-    <id     column="BNO"    property="no"/>
+    <id     column="WNO"    property="no"/>
     <result column="TITLE"  property="title"/>
-    <result column="PNO"  property="proejctNo"/>
+    <result column="PNO"  property="projectNo"/>
     <result column="MNO"  property="memberNo"/>
     <result column="CONT"    property="content"/>
     <result column="VIEWS"  property="views"/>
@@ -16,25 +16,27 @@
   </resultMap>
   
   <select id="selectList" resultMap="BoardMap">
-    select WNO, TITLE, CDT, PNO, MNO, CONT, VIEWS, W_DT
+    select WNO, TITLE, CONT, VIEWS, W_DT
     from POSTS
   </select>
   
   <select id="selectOne" parameterType="int" resultMap="BoardMap">
-    select WNO, TITLE, CDT, PNO, MNO, CONT, VIEWS, W_DT
+    select WNO, TITLE, CONT, VIEWS, W_DT
     from POSTS
     where WNO=#{no}
   </select>
   
   <insert id="insert" parameterType="Board">
     insert into 
-      POSTS(TITLE,CONT,W_DT) 
-      values(#{title},#{content},now());
+      POSTS(TITLE,PNO,MNO,CONT,W_DT)
+      values(#{title},#{projectNo},#{memberNo},#{content},now());
   </insert>
   
   <update id="update" parameterType="Board">
     update POSTS set
       TITLE=#{title},
+      PNO=#{projectNo},
+      MNO=#{memberNo},
       CONT=#{content},
       W_DT=now()
     where WNO=#{no}
@@ -42,7 +44,7 @@
   
   <delete id="delete" parameterType="int">
     delete from POSTS
-    where BNO=#{no}
+    where WNO=#{no}
   </delete>
   
 </mapper>

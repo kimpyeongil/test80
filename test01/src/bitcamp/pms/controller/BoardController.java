@@ -6,17 +6,23 @@ import bitcamp.pms.annotation.Controller;
 import bitcamp.pms.annotation.RequestMapping;
 import bitcamp.pms.dao.BoardDao;
 import bitcamp.pms.domain.Board;
+import bitcamp.pms.domain.Member;
 import bitcamp.pms.util.CommandUtil;
 
 @Controller
 @RequestMapping("board/")
 public class BoardController {
   private BoardDao boardDao;
+  private Member loginMember;
 
   public void setBoardDao(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
   
+  public void setLoginMember(Member loginMember) {
+    this.loginMember = loginMember;
+  }
+
   @RequestMapping("add.do")
   public void add(Scanner keyScan) {
     try {
@@ -24,7 +30,9 @@ public class BoardController {
       System.out.print("제목? ");
       board.setTitle(keyScan.nextLine());
       System.out.print("내용? ");
-      board.setContent(keyScan.nextLine());        
+      board.setContent(keyScan.nextLine());
+      board.setProjectNo(1);
+      board.setMemberNo(loginMember.getNo());
       if (CommandUtil.confirm(keyScan, "저장하시겠습니까?")) {
         boardDao.insert(board);
         System.out.println("저장하였습니다.");       
@@ -33,6 +41,7 @@ public class BoardController {
       }
     } catch(Exception e) {
       System.out.println("데이터 처리에 실패했습니다.");
+      e.printStackTrace();
     }   
   }
 
@@ -50,6 +59,7 @@ public class BoardController {
       }      
     } catch(Exception e) {
       System.out.println("데이터 처리에 실패했습니다.");
+      e.printStackTrace();
     }
   }
 
@@ -59,6 +69,7 @@ public class BoardController {
       boardDao.list();
     } catch (Exception e) {
       System.out.println("데이터 처리에 실패했습니다.");
+      e.printStackTrace();
     }
   }
 
@@ -67,12 +78,13 @@ public class BoardController {
     try {     
       System.out.print("변경할 게시판의 번호는? ");
       int no = Integer.parseInt(keyScan.nextLine());
-      Board board = boardDao.selectOne(no);   
+      Board board = boardDao.selectOne(no);
       System.out.printf("제목? (기존 게시판명: %s)", board.getTitle());
       board.setTitle(keyScan.nextLine());
       System.out.printf("내용? (기존 내용: %s)", board.getContent());
       board.setContent(keyScan.nextLine());
-      
+      board.setProjectNo(1);
+      board.setMemberNo(loginMember.getNo());    
       
       if (CommandUtil.confirm(keyScan, "변경하시겠습니까?")) {
         int count = boardDao.update(board);
@@ -83,6 +95,7 @@ public class BoardController {
       }
     } catch(IndexOutOfBoundsException e) {
       System.out.println("유효한 번호가 아닙니다.");
+      e.printStackTrace();
     } catch(Exception e) {
       System.out.println("데이터 처리에 실패했습니다.");
       e.printStackTrace();

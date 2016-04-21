@@ -50,11 +50,11 @@ public class ProjectApp {
   }  
   
   private void run() {
-    AuthController authController = 
-        (AuthController)appContext.getBean(AuthController.class);
-    authController.service();
     item.setAppContext(appContext);
     item.setRequestHandlerMapping(requestHandlerMapping);
+    AuthController authController = 
+        (AuthController)appContext.getBean(AuthController.class);
+    authController.service(item);
     subMenu.service(authController.getLoginMember(), item);
     keyScan.close();
   }
