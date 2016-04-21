@@ -6,11 +6,11 @@ public class Member {
   private String email;
   private String password;
   private String tel;
-  private boolean level;
+  private String level;
   
   public Member() {}
 
-  public Member(int no, String name, String email, String password, String tel, boolean level) {
+  public Member(int no, String name, String email, String password, String tel, String level) {
     this.no = no;
     this.name = name;
     this.email = email;
@@ -65,11 +65,11 @@ public class Member {
     this.tel = tel;
   }
 
-  public boolean isLevel() {
+  public String isLevel() {
     return level;
   }
 
-  public void setLevel(boolean level) {
+  public void setLevel(String level) {
     this.level = level;
   }
 }
