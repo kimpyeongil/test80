@@ -6,6 +6,14 @@ public class Member {
   private String email;
   private String password;
   private String tel;
+  private boolean level;
+  public boolean isLevel() {
+    return level;
+  }
+
+  public void setLevel(boolean level) {
+    this.level = level;
+  }
 
   public Member() {}
 
