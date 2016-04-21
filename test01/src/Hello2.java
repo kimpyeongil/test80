@@ -4,5 +4,6 @@ public class Hello2 {
     System.out.println("^_^");
     System.out.println("T_T");
     System.out.println("천배");
+ // 으아아아아아아아앙ㅇㅇ아ㅏㅏ아ㅏ아아ㅏ아
   }
 }
