@@ -8,7 +8,6 @@ import java.util.Scanner;
 import bitcamp.pms.context.request.RequestHandler;
 import bitcamp.pms.domain.Item;
 import bitcamp.pms.domain.Member;
-import bitcamp.pms.domain.Project;
 import bitcamp.pms.domain.ProjectMember;
 
 public class ClassMenu {
@@ -73,8 +72,6 @@ public class ClassMenu {
   }
 
   private void printCurriculum() {
-    Project project = (Project)doMenu("project/select.do");
-    System.out.println(project);
   }
 
   private void doProjectList() {

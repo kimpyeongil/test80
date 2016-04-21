@@ -23,7 +23,7 @@ public class ProjectController {
     try {
       Project project = new Project();
       System.out.print("프로젝트명? ");
-      project.setTitle(keyScan.nextLine());
+      project.setPnm(keyScan.nextLine());
       System.out.print("시작일? ");
       project.setStartDate(Date.valueOf(keyScan.nextLine()));
       System.out.print("종료일? ");
@@ -81,8 +81,8 @@ public class ProjectController {
   public void update(Scanner keyScan, Integer no) {
     try {      
       Project project = projectDao.selectOne(no);
-      System.out.printf("프로젝트명? (기존 프로젝트명: %s)", project.getTitle());
-      project.setTitle(keyScan.nextLine());
+      System.out.printf("프로젝트명? (기존 프로젝트명: %s)", project.getPnm());
+      project.setPnm(keyScan.nextLine());
       System.out.printf("시작일? (기존 시작일: %s)", project.getStartDate().toString());
       project.setStartDate(Date.valueOf(keyScan.nextLine()));
       System.out.printf("종료일? (기존 종료일: %s)", project.getEndDate().toString());
