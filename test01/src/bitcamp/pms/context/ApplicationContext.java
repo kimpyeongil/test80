@@ -25,9 +25,12 @@ public class ApplicationContext {
 
   private void createObject(File file) {
     if (file.isFile() && file.getName().endsWith(".class")) {
-      String classNameWithPackage = file.getPath().replace("./bin/", "")
-                                                  .replace(".class", "")
-                                                  .replace("/", ".");
+      String classNameWithPackage = file.getPath()  
+          .replace("./bin/", "")
+          .replace(".\\bin\\", "")
+          .replace(".class","")
+          .replace("/", ".")                                        
+          .replace("\\", "."); 
       try {
         Class<?> clazz = Class.forName(classNameWithPackage);
         Annotation[] annos = clazz.getAnnotations();
