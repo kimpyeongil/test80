@@ -227,10 +227,10 @@ ALTER TABLE TSK
 CREATE TABLE CLASSES (
   CNO  INTEGER      NOT NULL COMMENT '강의번호', -- 강의번호
   SUB  VARCHAR(255) NOT NULL COMMENT '과목', -- 과목
-  COL2 INTEGER      NOT NULL COMMENT '기수', -- 기수
+  NUM  INTEGER      NOT NULL COMMENT '기수', -- 기수
   TNO  INTEGER      NOT NULL COMMENT '강사번호', -- 강사번호
   MGNO INTEGER      NOT NULL COMMENT '매니저번호', -- 매니저번호
-  COL  INTEGER      NULL     COMMENT '강의실' -- 강의실
+  ROOM INTEGER      NULL     COMMENT '강의실' -- 강의실
 )
 COMMENT '클래스';
 
