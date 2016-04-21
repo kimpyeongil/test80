@@ -79,6 +79,7 @@ public class BoardController {
       System.out.print("변경할 게시판의 번호는? ");
       int no = Integer.parseInt(keyScan.nextLine());
       Board board = boardDao.selectOne(no);
+      
       System.out.printf("제목? (기존 게시판명: %s)", board.getTitle());
       board.setTitle(keyScan.nextLine());
       System.out.printf("내용? (기존 내용: %s)", board.getContent());

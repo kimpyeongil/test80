@@ -6,44 +6,46 @@
 <mapper namespace="TaskDao">
 
   <resultMap type="Task" id="TaskMap">
-    <id     column="TNO"    property="no"/>
-    <result column="EMAIL"  property="workerEmail"/>
-    <result column="CONTS"  property="content"/>
-    <result column="SDT"    property="startDate"/>
-    <result column="EDT"    property="endDate"/>
-    <result column="STAT"    property="state"/>
+    <id     column="TANO"    property="no"/>
+    <result column="YNM"  property="title"/>
+    <result column="PNO"  property="projectNo"/>
+    <result column="MNO"    property="memberNo"/>
+    <result column="CONT"    property="content"/>
+    <result column="ST_DT"    property="startDate"/>
+    <result column="ED_DT"    property="endDate"/>
   </resultMap>
   
   <select id="selectList" resultMap="TaskMap">
-    select TNO, EMAIL, TITLE, SDT, EDT
+    select TANO, YNM, CONT, ST_DT, ED_DT
     from TASKS
   </select>
   
   <select id="selectOne" parameterType="int" resultMap="TaskMap">
-    select TNO, EMAIL, TITLE, SDT, EDT
+    select TANO, YNM, CONT, ST_DT, ED_DT
     from TASKS
-    where TNO=#{no}
+    where TANO=#{no}
   </select>
   
   <insert id="insert" parameterType="Task">
     insert into 
-      TASKS(EMAIL,TITLE,CONTS,SDT,EDT) 
-      values(#{workerEmail},#{title},#{content},#{startDate},#{endDate});
+      TASKS(YNM,PNO,MNO,CONT,ST_DT,ED_DT) 
+      values(#{title},#{projectNo},#{memberNo},#{content},#{startDate},#{endDate});
   </insert>
   
   <update id="update" parameterType="Task">
     update TASKS set
-      EMAIL=#{workerEmail},
-      TITLE=#{title},
-      CONTS=#{content},
-      SDT=#{startDate},
-      EDT=#{endDate}
-    where TNO=#{no}
+      YNM=#{title},
+      PNO=#{projectNo},
+      MNO=#{memberNo},
+      CONT=#{content},
+      ST_DT=#{startDate},
+      ED_DT=#{endDate}
+    where TANO=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
     delete from TASKS
-    where TNO=#{no}
+    where TANO=#{no}
   </delete>
   
 </mapper>
