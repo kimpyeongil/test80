@@ -11,55 +11,71 @@ public class Task {
   private Date    startDate;
   private Date    endDate;
   
+  public Task() {}
   
-  
-  @Override
-  public String toString() {
-    return "Task [no=" + no + ", title=" + title + ", projectNo=" + projectNo + ", memberNo=" + memberNo + ", content="
-        + content + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+  public Task(int no, String title, int projectNo, int memberNo, String content, Date startDate, Date endDate) {
+  this.no = no;
+  this.title = title;
+  this.projectNo = projectNo;
+  this.memberNo = memberNo;
+  this.content = content;
+  this.startDate = startDate;
+  this.endDate = endDate;
   }
   
   public int getNo() {
-    return no;
+  return no;
   }
   public void setNo(int no) {
-    this.no = no;
+  this.no = no;
   }
+  
   public String getTitle() {
-    return title;
+  return title;
   }
   public void setTitle(String title) {
-    this.title = title;
+  this.title = title;
   }
+  
   public int getProjectNo() {
-    return projectNo;
+  return projectNo;
   }
   public void setProjectNo(int projectNo) {
-    this.projectNo = projectNo;
+  this.projectNo = projectNo;
   }
+  
   public int getMemberNo() {
-    return memberNo;
+  return memberNo;
   }
   public void setMemberNo(int memberNo) {
-    this.memberNo = memberNo;
+  this.memberNo = memberNo;
   }
+  
   public String getContent() {
-    return content;
+  return content;
   }
   public void setContent(String content) {
-    this.content = content;
+  this.content = content;
   }
+  
   public Date getStartDate() {
-    return startDate;
+  return startDate;
   }
   public void setStartDate(Date startDate) {
-    this.startDate = startDate;
+  this.startDate = startDate;
   }
+  
   public Date getEndDate() {
-    return endDate;
+  return endDate;
   }
   public void setEndDate(Date endDate) {
-    this.endDate = endDate;
+  this.endDate = endDate;
+  }
+  
+  @Override
+  public String toString() {
+  return "Task [no=" + no + ", title=" + title + ", projectNo=" + projectNo + ", memberNo=" + memberNo + ", content="
+      + content + ", startDate=" + startDate + ", endDate=" + endDate + "]";
   }
   
 }
