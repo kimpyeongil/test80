@@ -8,6 +8,7 @@ import java.util.Scanner;
 import bitcamp.pms.context.request.RequestHandler;
 import bitcamp.pms.domain.Item;
 import bitcamp.pms.domain.Member;
+import bitcamp.pms.domain.Project;
 import bitcamp.pms.domain.ProjectMember;
 
 public class ClassMenu {
@@ -50,13 +51,9 @@ public class ClassMenu {
     }
   }
   
-  private void doMenu(String input) {
+  private Object doMenu(String input) {
     RequestHandler requestHandler = 
         item.getRequestHandlerMapping().getRequestHandler(input);
-    if (requestHandler == null) {
-      System.out.println("존재하지 않는 메뉴입니다.");
-      return;
-    }
     Method method = requestHandler.getMethod();
     Object obj = requestHandler.getObj();
     
@@ -68,14 +65,16 @@ public class ClassMenu {
         arg = item.getAppContext().getBean(param.getType());
         args.add(arg);
       }
-      method.invoke(obj, args.toArray());
+      return method.invoke(obj, args.toArray());
     } catch (Exception e) {
       System.out.println("명령 처리중 에러 발생");
+      return null;
     }
   }
 
   private void printCurriculum() {
-    System.out.println("커리큘럼 확인 나중에 만들꺼");
+    Project project = (Project)doMenu("project/select.do");
+    System.out.println(project);
   }
 
   private void doProjectList() {
