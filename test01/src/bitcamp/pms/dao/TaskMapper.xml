@@ -7,7 +7,7 @@
 
   <resultMap type="Task" id="TaskMap">
     <id     column="TANO"    property="no"/>
-    <result column="YNM"  property="title"/>
+    <result column="TNM"  property="title"/>
     <result column="PNO"  property="projectNo"/>
     <result column="MNO"    property="memberNo"/>
     <result column="CONT"    property="content"/>
@@ -16,25 +16,25 @@
   </resultMap>
   
   <select id="selectList" resultMap="TaskMap">
-    select TANO, YNM, CONT, ST_DT, ED_DT
-    from TASKS
+    select TANO, TNM, CONT, ST_DT, ED_DT
+    from TSK
   </select>
   
   <select id="selectOne" parameterType="int" resultMap="TaskMap">
-    select TANO, YNM, CONT, ST_DT, ED_DT
-    from TASKS
+    select TANO, TNM, CONT, ST_DT, ED_DT
+    from TSK
     where TANO=#{no}
   </select>
   
   <insert id="insert" parameterType="Task">
     insert into 
-      TASKS(YNM,PNO,MNO,CONT,ST_DT,ED_DT) 
+      TSK(TNM,PNO,MNO,CONT,ST_DT,ED_DT) 
       values(#{title},#{projectNo},#{memberNo},#{content},#{startDate},#{endDate});
   </insert>
   
   <update id="update" parameterType="Task">
-    update TASKS set
-      YNM=#{title},
+    update TSK set
+      TNM=#{title},
       PNO=#{projectNo},
       MNO=#{memberNo},
       CONT=#{content},
@@ -44,7 +44,7 @@
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from TASKS
+    delete from TSK
     where TANO=#{no}
   </delete>
   

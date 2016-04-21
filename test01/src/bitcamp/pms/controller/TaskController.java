@@ -19,12 +19,15 @@ public class TaskController {
   public void setTaskDao(TaskDao taskDao) {
     this.taskDao = taskDao;
   }
+  
+  public void setLoginMember(Member loginMember) {
+    this.loginMember = loginMember;
+  }
 
   @RequestMapping("add.do")
   public void add(Scanner keyScan) {
     try {
-      Task task = new Task();
-  
+      Task task = new Task();  
       System.out.print("작업이름? ");
       task.setTitle(keyScan.nextLine());
       task.setProjectNo(1);
