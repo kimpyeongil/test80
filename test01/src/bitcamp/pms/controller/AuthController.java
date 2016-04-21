@@ -64,7 +64,7 @@ public class AuthController {
     if (member == null) {
       System.out.println("등록되지 않은 사용자입니다.");
       return false;
-    } else if (!member.getPass().equals(password)) {
+    } else if (!member.getPassword().equals(password)) {
       System.out.println("암호가 맞지 않습니다.");
       return false;
     }
@@ -95,7 +95,7 @@ public class AuthController {
         break;
       System.out.println("암호는 4 ~ 10자 까지만 가능합니다. 최소 알파벳1개, 숫자1개, 특수문자(?,!,@)1개 반드시 포함.");
     }
-    member.setPass(value);
+    member.setPassword(value);
     
     while (true) { 
       System.out.print("전화? ");    
@@ -104,7 +104,7 @@ public class AuthController {
         break;
       System.out.println("전화 번호 형식이 맞지 않습니다.(3~4-4자), (2~4-3~4-4)");
     }
-    member.setPhone(value);
+    member.setTel(value);
     try {
       memberDao.insert(member);
       System.out.println("가입 완료!");

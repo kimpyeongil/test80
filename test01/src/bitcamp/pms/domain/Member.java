@@ -4,8 +4,8 @@ public class Member {
   private int    no;
   private String name;
   private String email;
-  private String pass;
-  private String phone;
+  private String password;
+  private String tel;
 
   public Member() {}
 
@@ -13,13 +13,13 @@ public class Member {
     this.setNo(no);
     this.setName(name);
     this.setEmail(email);
-    this.setPass(pass);
-    this.setPhone(phone);
+    this.setPassword(pass);
+    this.setTel(phone);
   }
 
   @Override
   public String toString() {
-    return no + ", " + name + ", " + email + ", " + pass + ", " + phone;
+    return no + ", " + name + ", " + email + ", " + password + ", " + tel;
   }
 
   public int getNo() {
@@ -46,19 +46,19 @@ public class Member {
     this.email = email;
   }
 
-  public String getPass() {
-    return pass;
+  public String getPassword() {
+    return password;
   }
 
-  public void setPass(String pass) {
-    this.pass = pass;
+  public void setPassword(String pass) {
+    this.password = pass;
   }
 
-  public String getPhone() {
-    return phone;
+  public String getTel() {
+    return tel;
   }
 
-  public void setPhone(String phone) {
-    this.phone = phone;
+  public void setTel(String phone) {
+    this.tel = phone;
   }  
 }

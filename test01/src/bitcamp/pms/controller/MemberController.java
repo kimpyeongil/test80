@@ -26,9 +26,9 @@ public class MemberController {
       System.out.print("이메일? ");
       member.setEmail(keyScan.nextLine());
       System.out.print("암호? ");
-      member.setPass(keyScan.nextLine());
+      member.setPassword(keyScan.nextLine());
       System.out.print("전화? ");
-      member.setPhone(keyScan.nextLine());
+      member.setTel(keyScan.nextLine());
       if (CommandUtil.confirm(keyScan, "저장하시겠습니까?")) {
         memberDao.insert(member);
         System.out.println("저장하였습니다.");
@@ -79,10 +79,10 @@ public class MemberController {
       member.setName(keyScan.nextLine());
       System.out.printf("이메일? (기존 이메일: %s)", member.getEmail());
       member.setEmail(keyScan.nextLine());
-      System.out.printf("암호? (기존 암호: %s)", member.getPass());
-      member.setPass(keyScan.nextLine());
-      System.out.printf("전화? (기존 전화: %s)", member.getPhone());
-      member.setPhone(keyScan.nextLine());
+      System.out.printf("암호? (기존 암호: %s)", member.getPassword());
+      member.setPassword(keyScan.nextLine());
+      System.out.printf("전화? (기존 전화: %s)", member.getTel());
+      member.setTel(keyScan.nextLine());
       if (CommandUtil.confirm(keyScan, "변경하시겠습니까?")) {
         int count = memberDao.update(member);
         if (count > 0) System.out.println("변경하였습니다.");
