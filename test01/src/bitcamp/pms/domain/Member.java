@@ -4,25 +4,22 @@ public class Member {
   private int    no;
   private String name;
   private String email;
-  private String password;
-  private String tel;
-  private String level;
-  
+  private String pass;
+  private String phone;
+
   public Member() {}
 
-  public Member(int no, String name, String email, String password, String tel, String level) {
-    this.no = no;
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.tel = tel;
-    this.level = level;
+  public Member(int no, String name, String email, String pass, String phone) {
+    this.setNo(no);
+    this.setName(name);
+    this.setEmail(email);
+    this.setPass(pass);
+    this.setPhone(phone);
   }
 
   @Override
   public String toString() {
-    return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", tel=" + tel
-        + ", level=" + level + "]";
+    return no + ", " + name + ", " + email + ", " + pass + ", " + phone;
   }
 
   public int getNo() {
@@ -49,27 +46,19 @@ public class Member {
     this.email = email;
   }
 
-  public String getPassword() {
-    return password;
+  public String getPass() {
+    return pass;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setPass(String pass) {
+    this.pass = pass;
   }
 
-  public String getTel() {
-    return tel;
+  public String getPhone() {
+    return phone;
   }
 
-  public void setTel(String tel) {
-    this.tel = tel;
-  }
-
-  public String isLevel() {
-    return level;
-  }
-
-  public void setLevel(String level) {
-    this.level = level;
-  }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }  
 }
