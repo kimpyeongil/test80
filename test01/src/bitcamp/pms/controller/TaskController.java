@@ -22,10 +22,8 @@ public class TaskController {
   public void add(Scanner keyScan) {
     try {
       Task task = new Task();
-   
-      System.out.print("작업명? ");
-      task.setTitle(keyScan.nextLine());
-      System.out.print("내용? ");
+  
+      System.out.print("작업내용? ");
       task.setContent(keyScan.nextLine());
       System.out.print("시작일? ");
       task.setStartDate(Date.valueOf(keyScan.nextLine()));
@@ -46,7 +44,7 @@ public class TaskController {
   @RequestMapping("delete.do")
   public void delete(Scanner keyScan) {
     try {
-      System.out.print("삭제할 작업 번호는? ");
+      System.out.print("삭제할 직업 번호는? ");
       int no = Integer.parseInt(keyScan.nextLine());
       if (CommandUtil.confirm(keyScan, "삭제하시겠습니까?")) {
         int count = taskDao.delete(no);
@@ -75,9 +73,7 @@ public class TaskController {
       System.out.print("변경할 작업 번호는? ");
       int no = Integer.parseInt(keyScan.nextLine());
       Task task = taskDao.selectOne(no);      
-
-      System.out.printf("작업명? (기존 작업명: %s)", task.getTitle());
-      task.setTitle(keyScan.nextLine());
+      
       System.out.printf("내용? (기존 내용: %s)", task.getContent());
       task.setContent(keyScan.nextLine());
       System.out.printf("시작일? (기존 시작일: %s)", task.getStartDate().toString());
