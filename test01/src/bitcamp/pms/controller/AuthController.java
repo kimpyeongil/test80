@@ -27,6 +27,10 @@ public class AuthController {
   public void setMemberDao(MemberDao memberDao) {
     this.memberDao = memberDao;
   }
+  
+  public Member getLoginMember() {
+    return (Member)session.getAttribute("loginUser");
+  }
 
   public void service() {
     String input = null;
@@ -68,10 +72,10 @@ public class AuthController {
       System.out.println("암호가 맞지 않습니다.");
       return false;
     }
-    session.setAttribute("loginUser", member);    
+    session.setAttribute("loginUser", member);
     System.out.printf("환영합니다. %s님!\n", member.getName());
     return true;
-  }
+  } 
   
   private void doSignup() {
     Member member = new Member();
