@@ -2,11 +2,11 @@ package bitcamp.pms.menu;
 
 import java.util.Scanner;
 
-import bitcamp.pms.controller.BoardController;
+import bitcamp.pms.controller.PostController;
 
 public class BoardMenu implements Menu {
   Scanner keyScan = new Scanner(System.in);
-  private BoardController controller = new BoardController();
+  private PostController controller = new PostController();
   
   public void service() {
     String input = null;
