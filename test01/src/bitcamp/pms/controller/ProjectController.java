@@ -66,12 +66,20 @@ public class ProjectController {
       System.out.println("데이터 처리에 실패했습니다.");
     }
   }
+  
+  @RequestMapping("select.do")
+  public Project selectOne(Integer no) {
+    try {
+      return projectDao.selectOne(no);      
+    } catch (Exception e) {
+      System.out.println("데이터 처리에 실패했습니다.");
+      return null;
+    }
+  }
 
   @RequestMapping("update.do")
-  public void update(Scanner keyScan) {
-    try {
-      System.out.print("변경할 프로젝트의 번호는? ");
-      int no = Integer.parseInt(keyScan.nextLine());
+  public void update(Scanner keyScan, Integer no) {
+    try {      
       Project project = projectDao.selectOne(no);
       System.out.printf("프로젝트명? (기존 프로젝트명: %s)", project.getTitle());
       project.setTitle(keyScan.nextLine());

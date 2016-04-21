@@ -5,6 +5,7 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import bitcamp.pms.context.ApplicationContext;
 import bitcamp.pms.context.request.RequestHandler;
 import bitcamp.pms.domain.Item;
 import bitcamp.pms.domain.ProjectMember;
@@ -19,6 +20,8 @@ public class ProjectMenu {
   public void service(ProjectMember projectMember, Item item) {
     this.projectMember = projectMember;
     this.item = item;
+    ApplicationContext appContext = item.getAppContext();
+    appContext.addBean("projectNo", (Integer)projectMember.getProjectNo());
     String input = null;
     do {
       input = prompt();
@@ -41,7 +44,7 @@ public class ProjectMenu {
   private void menu(String input) {
     switch(input) {
       case "1": printProjectInfo(); break;
-      case "2": updateProject(); break;
+      case "2": doMenu("project/update.do"); break;
       case "3": toBoard(); break;
       case "4": toTask(); break;
       case "5": deleteProject(); break;
@@ -71,6 +74,7 @@ public class ProjectMenu {
       method.invoke(obj, args.toArray());
     } catch (Exception e) {
       System.out.println("명령 처리중 에러 발생");
+      e.printStackTrace();
     }
   }
 
