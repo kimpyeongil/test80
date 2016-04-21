@@ -24,9 +24,7 @@ public class BoardController {
       System.out.print("제목? ");
       board.setTitle(keyScan.nextLine());
       System.out.print("내용? ");
-      board.setContent(keyScan.nextLine());
-      System.out.print("암호? ");
-      board.setPassword(keyScan.nextLine());           
+      board.setContent(keyScan.nextLine());        
       if (CommandUtil.confirm(keyScan, "저장하시겠습니까?")) {
         boardDao.insert(board);
         System.out.println("저장하였습니다.");       
@@ -74,8 +72,6 @@ public class BoardController {
       board.setTitle(keyScan.nextLine());
       System.out.printf("내용? (기존 내용: %s)", board.getContent());
       board.setContent(keyScan.nextLine());
-      System.out.printf("암호? (기존 암호: %s)", board.getPassword());
-      board.setPassword(keyScan.nextLine());  
       
       
       if (CommandUtil.confirm(keyScan, "변경하시겠습니까?")) {
