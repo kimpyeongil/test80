@@ -1,9 +1,9 @@
-package bitcamp.pms.menu;
+package bitcamp.pms.controller;
 
 import java.util.Scanner;
 
-import bitcamp.pms.dao.MemberDao;
 import bitcamp.pms.domain.Member;
+import bitcamp.pms.util.CommandUtil;
 import bitcamp.pms.util.PatternTest;
 import bitcamp.pms.util.Session;
 
@@ -109,16 +109,16 @@ public class AuthMenu {
     }    
   }
   
-//  @RequestMapping("unsubscribe")
-//  public void unsubscribe(Session se) {
-//    if (CommandUtil.confirm(keyScan, "정말 탈퇴하시겠습니까?")) {
-//      try {
-//        Member loginUser = (Member)se.getAttribute("loginUser");
-//        memberDao.delete(loginUser.getNo());
-//        System.out.println("탈퇴 처리가 완료되었습니다. 안녕히 가세요.");
-//      } catch (Exception e) {
-//        System.out.println("탈퇴 처리중 서버에 이상이 발생하였습니다.");
-//      }
-//    }
-//  }
+  @RequestMapping("unsubscribe")
+  public void unsubscribe(Session se) {
+    if (CommandUtil.confirm(keyScan, "정말 탈퇴하시겠습니까?")) {
+      try {
+        Member loginUser = (Member)se.getAttribute("loginUser");
+        memberDao.delete(loginUser.getNo());
+        System.out.println("탈퇴 처리가 완료되었습니다. 안녕히 가세요.");
+      } catch (Exception e) {
+        System.out.println("탈퇴 처리중 서버에 이상이 발생하였습니다.");
+      }
+    }
+  }
 }
