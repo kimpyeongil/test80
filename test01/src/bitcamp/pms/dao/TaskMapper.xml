@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TaskDao">
+
+  <resultMap type="Task" id="TaskMap">
+    <id     column="TNO"    property="no"/>
+    <result column="EMAIL"  property="workerEmail"/>
+    <result column="CONTS"  property="content"/>
+    <result column="SDT"    property="startDate"/>
+    <result column="EDT"    property="endDate"/>
+    <result column="STAT"    property="state"/>
+  </resultMap>
+  
+  <select id="selectList" resultMap="TaskMap">
+    select TNO, EMAIL, TITLE, SDT, EDT
+    from TASKS
+  </select>
+  
+  <select id="selectOne" parameterType="int" resultMap="TaskMap">
+    select TNO, EMAIL, TITLE, SDT, EDT
+    from TASKS
+    where TNO=#{no}
+  </select>
+  
+  <insert id="insert" parameterType="Task">
+    insert into 
+      TASKS(EMAIL,TITLE,CONTS,SDT,EDT) 
+      values(#{workerEmail},#{title},#{content},#{startDate},#{endDate});
+  </insert>
+  
+  <update id="update" parameterType="Task">
+    update TASKS set
+      EMAIL=#{workerEmail},
+      TITLE=#{title},
+      CONTS=#{content},
+      SDT=#{startDate},
+      EDT=#{endDate}
+    where TNO=#{no}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    delete from TASKS
+    where TNO=#{no}
+  </delete>
+  
+</mapper>
