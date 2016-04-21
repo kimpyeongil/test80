@@ -11,6 +11,7 @@ public class AuthMenu {
   private Scanner keyScan;
   private MemberDao memberDao;
   private Session session;
+  private SubjectMenu subMenu = new SubjectMenu();
 
   public void setSession(Session session) {
     this.session = session;
@@ -27,6 +28,7 @@ public class AuthMenu {
   public void service() {
     String input = null;
     while (true) {
+      System.out.println("메뉴를 선택하세요.");
       System.out.println("1)로그인  2)회원가입  9) 종료");
       input = keyScan.nextLine();
       try {
