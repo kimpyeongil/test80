@@ -7,40 +7,40 @@
 
   <resultMap type="Project" id="ProjectMap">
     <id     column="PNO"    property="no"/>
-    <result column="SDT"    property="startDate"/>
-    <result column="EDT"    property="endDate"/>
-    <result column="DESCT"  property="description"/>
-    <result column="STAT"   property="state"/>
+    <result column="PNM"    property="startDate"/>
+    <result column="CONT"    property="endDate"/>
+    <result column="ST_DT"  property="startDate"/>
+    <result column="ED_DT"   property="endDate"/>
   </resultMap>
   
   <select id="selectList" resultMap="ProjectMap">
-    select PNO, TITLE, SDT, EDT, DESCT
-    from PROJECTS
+    select PNO, PNM, CONT, ST_DT, ED_DT
+    from PROJEC
   </select>
   
   <select id="selectOne" parameterType="int" resultMap="ProjectMap">
-    select PNO, TITLE, SDT, EDT, DESCT
-    from PROJECTS 
+    select PNO, PNM, CONT, ST_DT, ED_DT
+    from PROJEC 
     where PNO=#{no}
   </select>
   
   <insert id="insert" parameterType="Project">
     insert into 
-      PROJECTS(TITLE,SDT,EDT,DESCT) 
-      values(#{title},#{startDate},#{endDate},#{description});
+      PROJEC(PNM,CONT,ST_DT,ED_DT) 
+      values(#{pnm},#{description},#{startDate},#{endDate});
   </insert>
   
   <update id="update" parameterType="Project">
-    update PROJECTS set
-      TITLE=#{title},
-      SDT=#{startDate},
-      EDT=#{endDate},
-      DESCT=#{description}
+    update PROJEC set
+      PNM=#{pnm},
+      CONT=#{description},
+      ST_DT=#{startDate},
+      ED_DT=#{endDate}
     where PNO=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from PROJECTS
+    delete from PROJEC
     where PNO=#{no}
   </delete>
   
