@@ -4,16 +4,14 @@ import java.sql.Date;
 
 public class Task {
   private int     no;
-  private String  title;
   private String  content;
   private Date    startDate;
   private Date    endDate;
   
   public Task() {}
 
-  public Task(int no, String title, String content, Date startDate, Date endDate) {
+  public Task(int no, String content, Date startDate, Date endDate) {
     this.no = no;
-    this.title = title;
     this.content = content;
     this.startDate = startDate;
     this.endDate = endDate;
@@ -21,8 +19,7 @@ public class Task {
 
   @Override
   public String toString() {
-    return no + ", " + title + ", " + content
-        + ", " + startDate + ", " + endDate;
+    return no + ", " + content + ", " + startDate + ", " + endDate;
   }
 
   public int getNo() {
@@ -31,14 +28,6 @@ public class Task {
 
   public void setNo(int no) {
     this.no = no;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
   }
 
   public String getContent() {
