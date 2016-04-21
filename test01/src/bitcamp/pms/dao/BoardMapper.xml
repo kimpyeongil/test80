@@ -7,40 +7,41 @@
 
   <resultMap type="Board" id="BoardMap">
     <id     column="BNO"    property="no"/>
-    <result column="CONTS"  property="content"/>
-    <result column="VWCNT"  property="views"/>
-    <result column="PWD"    property="password"/>
-    <result column="CDT"    property="createdDate"/>
+    <result column="TITLE"  property="title"/>
+    <result column="PNO"  property="proejctNo"/>
+    <result column="MNO"  property="memberNo"/>
+    <result column="CONT"    property="content"/>
+    <result column="VIEWS"  property="views"/>
+    <result column="W_DT"    property="createdDate"/>
   </resultMap>
   
   <select id="selectList" resultMap="BoardMap">
-    select BNO, TITLE, VWCNT, CDT
-    from BOARDS
+    select WNO, TITLE, CDT, PNO, MNO, CONT, VIEWS, W_DT
+    from POSTS
   </select>
   
   <select id="selectOne" parameterType="int" resultMap="BoardMap">
-    select BNO, TITLE, VWCNT, CDT
-    from BOARDS
-    where BNO=#{no}
+    select WNO, TITLE, CDT, PNO, MNO, CONT, VIEWS, W_DT
+    from POSTS
+    where WNO=#{no}
   </select>
   
   <insert id="insert" parameterType="Board">
     insert into 
-      BOARDS(TITLE,CONTS,PWD,CDT) 
-      values(#{title},#{content},#{password},now());
+      POSTS(TITLE,CONT,W_DT) 
+      values(#{title},#{content},now());
   </insert>
   
   <update id="update" parameterType="Board">
-    update BOARDS set
+    update POSTS set
       TITLE=#{title},
-      CONTS=#{content},
-      PWD=#{password},
-      CDT=now()
-    where BNO=#{no}
+      CONT=#{content},
+      W_DT=now()
+    where WNO=#{no}
   </update>
   
   <delete id="delete" parameterType="int">
-    delete from BOARDS
+    delete from POSTS
     where BNO=#{no}
   </delete>
   
