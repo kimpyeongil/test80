@@ -3,6 +3,7 @@ package bitcamp.pms.controller;
 import java.util.List;
 import java.util.Scanner;
 
+import bitcamp.pms.dao.PostDao;
 import bitcamp.pms.domain.Post;
 import bitcamp.pms.util.CommandUtil;
 
@@ -25,7 +26,7 @@ public class PostController {
     System.out.print("내용? ");
     post.setContent(keyScan.nextLine());
 
-    if (confirm(keyScan, "저장하시겠습니까?")) {
+    if (CommandUtil.confirm(keyScan, "저장하시겠습니까?")) {
       try {
         postDao.insert(post);
         System.out.println("저장하였습니다.");
@@ -43,7 +44,7 @@ public class PostController {
       System.out.print("삭제할 게시물 번호는? ");
       int no = Integer.parseInt(keyScan.nextLine());
   
-      if (confirm(keyScan, "정말 삭제하시겠습니까?")) {
+      if (CommandUtil.confirm(keyScan, "정말 삭제하시겠습니까?")) {
         int count = postDao.delete(no);
         if (count > 0) {
           System.out.println("삭제하였습니다.");
