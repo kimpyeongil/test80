@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS TSK RESTRICT;
 DROP TABLE IF EXISTS CLASSES RESTRICT;
 
 -- 클래스멤버
-DROP TABLE IF EXISTS CLMEM RESTRICT;
+DROP TABLE IF EXISTS CLMEMB RESTRICT;
 
 -- 프로젝트멤버
 DROP TABLE IF EXISTS PJMEMB RESTRICT;
@@ -30,8 +30,8 @@ CREATE TABLE PROJEC (
   PNO   INTEGER      NOT NULL COMMENT '프로젝트번호', -- 프로젝트번호
   PNM   VARCHAR(255) NOT NULL COMMENT '프로젝트명', -- 프로젝트명
   CONT  TEXT         NULL     COMMENT '프로젝트내용', -- 프로젝트내용
-  ST_DT DATE         NULL     COMMENT '시작일', -- 시작일
-  ED_DT DATE         NULL     COMMENT '종료일' -- 종료일
+  ST_DT DATE         NOT NULL COMMENT '시작일', -- 시작일
+  ED_DT DATE         NOT NULL COMMENT '종료일' -- 종료일
 )
 COMMENT '프로젝트';
 
@@ -94,10 +94,10 @@ ALTER TABLE MEMB
 CREATE TABLE POSTS (
   WNO   INTEGER      NOT NULL COMMENT '게시물번호', -- 게시물번호
   TITLE VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-  PNO   INTEGER      NULL     COMMENT '프로젝트번호', -- 프로젝트번호
-  MNO   INTEGER      NULL     COMMENT '멤버번호', -- 멤버번호
+  PNO   INTEGER      NOT NULL COMMENT '프로젝트번호', -- 프로젝트번호
+  MNO   INTEGER      NOT NULL COMMENT '멤버번호', -- 멤버번호
   CONT  TEXT         NULL     COMMENT '내용', -- 내용
-  VIEWS INTEGER      NULL     COMMENT '조회수', -- 조회수
+  VIEWS INTEGER      NULL     DEFAULT 0 COMMENT '조회수', -- 조회수
   W_DT  DATE         NOT NULL COMMENT '게시일' -- 게시일
 )
 COMMENT '게시물';
@@ -117,12 +117,11 @@ ALTER TABLE POSTS
 
 -- 강사
 CREATE TABLE TEACHERS (
-  TNO   INTEGER      NOT NULL COMMENT '강사번호', -- 강사번호
-  TNM   VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
-  EMAIL VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
-  PWD   VARCHAR(20)  NOT NULL COMMENT '암호', -- 암호
-  TEL   VARCHAR(30)  NOT NULL COMMENT '전화', -- 전화
-  PHOT  VARCHAR(255) NULL     COMMENT '사진' -- 사진
+  TNO   INTEGER     NOT NULL COMMENT '강사번호', -- 강사번호
+  TNM   VARCHAR(50) NOT NULL COMMENT '이름', -- 이름
+  EMAIL VARCHAR(40) NOT NULL COMMENT '이메일', -- 이메일
+  PWD   VARCHAR(20) NOT NULL COMMENT '암호', -- 암호
+  TEL   VARCHAR(30) NOT NULL COMMENT '전화' -- 전화
 )
 COMMENT '강사';
 
@@ -153,12 +152,11 @@ ALTER TABLE TEACHERS
 
 -- 매니저
 CREATE TABLE MANAGERS (
-  MGNO  INTEGER      NOT NULL COMMENT '매니저번호', -- 매니저번호
-  MGNM  VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
-  EMAIL VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
-  PWD   VARCHAR(20)  NOT NULL COMMENT '암호', -- 암호
-  TEL   VARCHAR(30)  NOT NULL COMMENT '전화', -- 전화
-  PHOT  VARCHAR(255) NULL     COMMENT '사진' -- 사진
+  MGNO  INTEGER     NOT NULL COMMENT '매니저번호', -- 매니저번호
+  MGNM  VARCHAR(50) NOT NULL COMMENT '이름', -- 이름
+  EMAIL VARCHAR(40) NOT NULL COMMENT '이메일', -- 이메일
+  PWD   VARCHAR(20) NOT NULL COMMENT '암호', -- 암호
+  TEL   VARCHAR(30) NOT NULL COMMENT '전화' -- 전화
 )
 COMMENT '매니저';
 
@@ -181,11 +179,6 @@ CREATE INDEX IX_MANAGERS
     MGNM ASC -- 이름
   );
 
--- 매니저 인덱스2
-CREATE INDEX IX_MANAGERS2
-  ON MANAGERS( -- 매니저
-  );
-
 ALTER TABLE MANAGERS
   MODIFY COLUMN MGNO INTEGER NOT NULL AUTO_INCREMENT COMMENT '매니저번호';
 
@@ -196,8 +189,8 @@ ALTER TABLE MANAGERS
 CREATE TABLE TSK (
   TANO  INTEGER      NOT NULL COMMENT '작업번호', -- 작업번호
   TNM   VARCHAR(255) NOT NULL COMMENT '작업명', -- 작업명
-  PNO   INTEGER      NULL     COMMENT '프로젝트번호', -- 프로젝트번호
-  MNO   INTEGER      NULL     COMMENT '멤버번호', -- 멤버번호
+  PNO   INTEGER      NOT NULL COMMENT '프로젝트번호', -- 프로젝트번호
+  MNO   INTEGER      NOT NULL COMMENT '멤버번호', -- 멤버번호
   CONT  TEXT         NULL     COMMENT '작업내용', -- 작업내용
   ST_DT DATE         NULL     COMMENT '시작일', -- 시작일
   ED_DT DATE         NULL     COMMENT '종료일' -- 종료일
@@ -248,15 +241,15 @@ ALTER TABLE CLASSES
   AUTO_INCREMENT = 1;
 
 -- 클래스멤버
-CREATE TABLE CLMEM (
+CREATE TABLE CLMEMB (
   CNO INTEGER NOT NULL COMMENT '강의번호', -- 강의번호
   MNO INTEGER NOT NULL COMMENT '멤버번호' -- 멤버번호
 )
 COMMENT '클래스멤버';
 
 -- 클래스멤버
-ALTER TABLE CLMEM
-  ADD CONSTRAINT PK_CLMEM -- 클래스멤버 기본키
+ALTER TABLE CLMEMB
+  ADD CONSTRAINT PK_CLMEMB -- 클래스멤버 기본키
     PRIMARY KEY (
       CNO, -- 강의번호
       MNO  -- 멤버번호
@@ -332,8 +325,8 @@ ALTER TABLE CLASSES
     );
 
 -- 클래스멤버
-ALTER TABLE CLMEM
-  ADD CONSTRAINT FK_CLASSES_TO_CLMEM -- 클래스 -> 클래스멤버
+ALTER TABLE CLMEMB
+  ADD CONSTRAINT FK_CLASSES_TO_CLMEMB -- 클래스 -> 클래스멤버
     FOREIGN KEY (
       CNO -- 강의번호
     )
@@ -342,8 +335,8 @@ ALTER TABLE CLMEM
     );
 
 -- 클래스멤버
-ALTER TABLE CLMEM
-  ADD CONSTRAINT FK_MEMB_TO_CLMEM -- 멤버 -> 클래스멤버
+ALTER TABLE CLMEMB
+  ADD CONSTRAINT FK_MEMB_TO_CLMEMB -- 멤버 -> 클래스멤버
     FOREIGN KEY (
       MNO -- 멤버번호
     )

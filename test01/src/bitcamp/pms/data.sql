@@ -8,14 +8,14 @@ insert into MEMB(MNM,EMAIL,PWD,TEL) values('최춘호', 'choi@test.com', '1111',
 insert into MEMB(MNM,EMAIL,PWD,TEL) values('박현신', 'park@test.com', '1111', '444-4444');
 insert into MEMB(MNM,EMAIL,PWD,TEL) values('이천배', 'lee@test.com', '1111', '555-5555');
 
-insert into CLMEM(CNO,MNO) values('1','1');
-insert into CLMEM(CNO,MNO) values('1','2');
-insert into CLMEM(CNO,MNO) values('1','3');
-insert into CLMEM(CNO,MNO) values('1','4');
-insert into CLMEM(CNO,MNO) values('1','5');
+insert into CLMEMB(CNO,MNO) values('1','1');
+insert into CLMEMB(CNO,MNO) values('1','2');
+insert into CLMEMB(CNO,MNO) values('1','3');
+insert into CLMEMB(CNO,MNO) values('1','4');
+insert into CLMEMB(CNO,MNO) values('1','5');
 
 insert into PROJEC(PNM,CONT,ST_DT,ED_DT) 
-values('프로젝트1','프로젝트 관리 매니저 개발','ㅁㄴㅇㄹ','2016-2-15','2016-8-4');
+values('프로젝트1','프로젝트 관리 매니저 개발','2016-2-15','2016-8-4');
 
 insert into PJMEMB(PNO,MNO) values('1', '1');
 insert into PJMEMB(PNO,MNO) values('1', '2');
