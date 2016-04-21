@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import bitcamp.pms.controller.TaskController;
 
-public class TaskMenu implements Menu {
+public class TaskMenu {
   Scanner keyScan = new Scanner(System.in);
   private TaskController controller = new TaskController();
   
@@ -30,9 +30,9 @@ public class TaskMenu implements Menu {
   private void menu(String input) {
     switch(input) {
       case "1": controller.list(); break;
-      case "2": controller.insert(); break;
-      case "3": controller.update(); break;
-      case "4": controller.delete(); break;
+//      case "2": controller.insert(); break;
+//      case "3": controller.update(); break;
+//      case "4": controller.delete(); break;
       case "9": break;
       default : doErr(); 
     }

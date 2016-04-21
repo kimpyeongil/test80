@@ -2,11 +2,11 @@ package bitcamp.pms.menu;
 
 import java.util.Scanner;
 
-import bitcamp.pms.controller.PostController;
+import bitcamp.pms.controller.BoardController;
 
-public class BoardMenu implements Menu {
+public class BoardMenu {
   Scanner keyScan = new Scanner(System.in);
-  private PostController controller = new PostController();
+  private BoardController controller = new BoardController();
   
   public void service() {
     String input = null;
@@ -30,9 +30,9 @@ public class BoardMenu implements Menu {
   private void menu(String input) {
     switch(input) {
       case "1": controller.list(); break;
-      case "2": controller.insert(); break;
-      case "3": controller.update(); break;
-      case "4": controller.delete(); break;
+//      case "2": controller.insert(); break;
+//      case "3": controller.update(); break;
+//      case "4": controller.delete(); break;
       case "9": break;
       default : doErr(); 
     }

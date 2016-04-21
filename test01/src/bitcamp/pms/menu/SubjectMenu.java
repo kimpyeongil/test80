@@ -2,11 +2,18 @@ package bitcamp.pms.menu;
 
 import java.util.Scanner;
 
-public class SubjectMenu implements Menu {
+import bitcamp.pms.domain.Item;
+import bitcamp.pms.domain.Member;
+
+public class SubjectMenu {
   Scanner keyScan = new Scanner(System.in);
   private ClassMenu classMenu = new ClassMenu();
+  private Member loginMember;
+  private Item item;
   
-  public void service() {
+  public void service(Member member, Item item) {
+    loginMember = member;
+    this.item = item;
     String input = null;
     do {
       input = prompt();
@@ -19,7 +26,7 @@ public class SubjectMenu implements Menu {
     System.out.println("메뉴를 선택하세요.");
     System.out.println("1) 수강신청");
     System.out.println("2) 내 강의");
-    System.out.println("9) 이전 메뉴");
+    System.out.println("9) 프로그램 종료");
     return keyScan.nextLine();
   }  
 
@@ -28,16 +35,16 @@ public class SubjectMenu implements Menu {
       case "1": doEnrolment(); break;
       case "2": myClass(); break;
       case "9": break;
-      default : doErr(); 
+      default : doErr();
     }
   }
   
   private void doEnrolment() {
-    System.out.println("수강신청");
+    System.out.println("수강신청 나중에 만들꺼");
   }
 
   private void myClass() {
-    classMenu.service();
+    classMenu.service(1, loginMember, item);
   }
 
   private void doErr() {

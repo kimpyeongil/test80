@@ -2,7 +2,7 @@ package bitcamp.pms.menu;
 
 import java.util.Scanner;
 
-public class ProjectMenu implements Menu {
+public class ProjectMenu {
   Scanner keyScan = new Scanner(System.in);
   private BoardMenu boardMenu = new BoardMenu();
   private TaskMenu taskMenu = new TaskMenu();
