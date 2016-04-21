@@ -4,29 +4,25 @@ import java.sql.Date;
 
 public class Task {
   private int     no;
-  private String  workerEmail;
   private String  title;
   private String  content;
   private Date    startDate;
   private Date    endDate;
-  private int     state;
   
   public Task() {}
 
-  public Task(int no, String workerEmail, String title, String content, Date startDate, Date endDate, int state) {
+  public Task(int no, String title, String content, Date startDate, Date endDate) {
     this.no = no;
-    this.workerEmail = workerEmail;
     this.title = title;
     this.content = content;
     this.startDate = startDate;
     this.endDate = endDate;
-    this.state = state;
   }
 
   @Override
   public String toString() {
-    return no + ", " + workerEmail + ", " + title + ", " + content
-        + ", " + startDate + ", " + endDate + ", " + state;
+    return no + ", " + title + ", " + content
+        + ", " + startDate + ", " + endDate;
   }
 
   public int getNo() {
@@ -35,14 +31,6 @@ public class Task {
 
   public void setNo(int no) {
     this.no = no;
-  }
-
-  public String getWorkerEmail() {
-    return workerEmail;
-  }
-
-  public void setWorkerEmail(String workerEmail) {
-    this.workerEmail = workerEmail;
   }
 
   public String getTitle() {
@@ -77,11 +65,4 @@ public class Task {
     this.endDate = endDate;
   }
 
-  public int getState() {
-    return state;
-  }
-
-  public void setState(int state) {
-    this.state = state;
-  }
 }
