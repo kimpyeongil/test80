@@ -44,7 +44,7 @@ public class TaskController {
   @RequestMapping("delete.do")
   public void delete(Scanner keyScan) {
     try {
-      System.out.print("삭제할 직업 번호는? ");
+      System.out.print("삭제할 작업 번호는? ");
       int no = Integer.parseInt(keyScan.nextLine());
       if (CommandUtil.confirm(keyScan, "삭제하시겠습니까?")) {
         int count = taskDao.delete(no);
