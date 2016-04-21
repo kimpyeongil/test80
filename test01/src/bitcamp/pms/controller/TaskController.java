@@ -22,9 +22,8 @@ public class TaskController {
   public void add(Scanner keyScan) {
     try {
       Task task = new Task();
-      System.out.print("이메일? ");
-      task.setWorkerEmail(keyScan.nextLine());
-      System.out.print("태스크명? ");
+   
+      System.out.print("작업명? ");
       task.setTitle(keyScan.nextLine());
       System.out.print("내용? ");
       task.setContent(keyScan.nextLine());
@@ -32,6 +31,7 @@ public class TaskController {
       task.setStartDate(Date.valueOf(keyScan.nextLine()));
       System.out.print("종료일? ");
       task.setEndDate(Date.valueOf(keyScan.nextLine()));
+      
       if (CommandUtil.confirm(keyScan, "저장하시겠습니까?")) {      
         taskDao.insert(task);
         System.out.println("저장하였습니다.");
@@ -46,7 +46,7 @@ public class TaskController {
   @RequestMapping("delete.do")
   public void delete(Scanner keyScan) {
     try {
-      System.out.print("삭제할 태스크의 번호는? ");
+      System.out.print("삭제할 작업 번호는? ");
       int no = Integer.parseInt(keyScan.nextLine());
       if (CommandUtil.confirm(keyScan, "삭제하시겠습니까?")) {
         int count = taskDao.delete(no);
@@ -72,12 +72,11 @@ public class TaskController {
   @RequestMapping("update.do")
   public void update(Scanner keyScan) {
     try {
-      System.out.print("변경할 태스크의 번호는? ");
+      System.out.print("변경할 작업 번호는? ");
       int no = Integer.parseInt(keyScan.nextLine());
       Task task = taskDao.selectOne(no);      
-      System.out.printf("이메일? (기존 이메일: %s)", task.getWorkerEmail());
-      task.setWorkerEmail(keyScan.nextLine());
-      System.out.printf("태스크명? (기존 태스크명: %s)", task.getTitle());
+
+      System.out.printf("작업명? (기존 작업명: %s)", task.getTitle());
       task.setTitle(keyScan.nextLine());
       System.out.printf("내용? (기존 내용: %s)", task.getContent());
       task.setContent(keyScan.nextLine());
