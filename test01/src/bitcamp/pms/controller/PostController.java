@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import bitcamp.pms.domain.Post;
+import bitcamp.pms.util.CommandUtil;
 
 @Controller
 @RequestMapping("post/")
@@ -91,7 +92,7 @@ public class PostController {
       post.setContent(keyScan.nextLine());
   
   
-      if (confirm(keyScan, "변경하시겠습니까?")) {
+      if (CommandUtil.confirm(keyScan, "변경하시겠습니까?")) {
         int count = postDao.update(post);
         if (count > 0) {
           System.out.println("변경하였습니다.");
@@ -103,19 +104,6 @@ public class PostController {
       }
     } catch (Exception e) {
       System.out.println("데이터 처리에 실패했습니다.");
-    }
-  }
-  public static boolean confirm(Scanner keyScan, String message) {
-    while (true) {
-      System.out.printf("%s(y/n) ", message);
-      String input = keyScan.nextLine().toLowerCase();
-      if (input.equals("y")) {
-        return true;
-      } else if (input.equals("n")) {
-        return false;
-      } else {
-        System.out.println("잘못된 명령어입니다.");
-      }
     }
   }
 }
