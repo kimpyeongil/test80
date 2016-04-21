@@ -27,7 +27,7 @@
    -->
   <insert id="insert" parameterType="Member">
     insert into MEMB(MNM,EMAIL,PWD,TEL,SUPER)
-    values(#{name},#{email},#{password},#{tel},#{level})
+    values(#{name},#{email},#{password},#{tel},#{level}) <!--자유ㅗㄴ  -->
   </insert>
   
   <update id="update" parameterType="Member">
