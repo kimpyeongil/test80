@@ -6,7 +6,7 @@ import bitcamp.pms.menu.SubjectMenu;
 
 public class ProjectApp {
   static Scanner keyScan = new Scanner(System.in);
-  static SubjectMenu subMenu = new SubjectMenu();  
+  private static SubjectMenu subMenu = new SubjectMenu();
   
   public static void main(String[] args) {
     String input = null;    
@@ -32,15 +32,6 @@ public class ProjectApp {
       case "9": doQuit(); break;
       default : doErr(); 
     }
-  }
-  
-  private static void doLogin() {
-    System.out.println("로그인");
-    subMenu.service();
-  }
-  
-  private static void doJoin() {
-    System.out.println("회원가입");
   }
   
   private static void doQuit() {
