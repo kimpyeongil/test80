@@ -1,13 +1,24 @@
 package bitcamp.pms.menu;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import bitcamp.pms.context.request.RequestHandler;
+import bitcamp.pms.domain.Item;
+import bitcamp.pms.domain.ProjectMember;
 
 public class ProjectMenu {
   Scanner keyScan = new Scanner(System.in);
   private BoardMenu boardMenu = new BoardMenu();
   private TaskMenu taskMenu = new TaskMenu();
+  private ProjectMember projectMember;
+  private Item item;
   
-  public void service() {
+  public void service(ProjectMember projectMember, Item item) {
+    this.item = item;
+    this.projectMember = projectMember;
     String input = null;
     do {
       input = prompt();
@@ -38,6 +49,30 @@ public class ProjectMenu {
       default : doErr(); 
     }
   }
+  
+  private void doMenu(String input) {
+    RequestHandler requestHandler = 
+        item.getRequestHandlerMapping().getRequestHandler(input);
+    if (requestHandler == null) {
+      System.out.println("존재하지 않는 메뉴입니다.");
+      return;
+    }
+    Method method = requestHandler.getMethod();
+    Object obj = requestHandler.getObj();
+    
+    try {      
+      ArrayList<Object> args = new ArrayList<>();       
+      Parameter[] params = method.getParameters();
+      Object arg = null;
+      for (Parameter param : params) {        
+        arg = item.getAppContext().getBean(param.getType());
+        args.add(arg);
+      }
+      method.invoke(obj, args.toArray());
+    } catch (Exception e) {
+      System.out.println("명령 처리중 에러 발생");
+    }
+  }
 
   private void printProjectInfo() {
     System.out.println("-- 7번 팀 -- ");
@@ -51,11 +86,11 @@ public class ProjectMenu {
   }
   
   private void toBoard() {
-    boardMenu.service();
+    boardMenu.service(projectMember);
   }
   
   private void toTask() {
-    taskMenu.service();
+    taskMenu.service(projectMember);
   }
   
   private void deleteProject() {

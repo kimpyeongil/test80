@@ -8,16 +8,17 @@ import java.util.Scanner;
 import bitcamp.pms.context.request.RequestHandler;
 import bitcamp.pms.domain.Item;
 import bitcamp.pms.domain.Member;
+import bitcamp.pms.domain.ProjectMember;
 
 public class ClassMenu {
   Scanner keyScan = new Scanner(System.in);
   private ProjectMenu proMenu = new ProjectMenu();
-  private Member loginMember;
   private Item item;
+  private Member loginMember;
   
-  public void service(int classNo, Member member, Item item) {
+  public void service(Member loginMember, Item item) {
     this.item = item;
-    loginMember = member;
+    this.loginMember = loginMember;
     String input = null;
     do {
       input = prompt();
@@ -74,8 +75,7 @@ public class ClassMenu {
   }
 
   private void printCurriculum() {
-    System.out.println("자바 프로그래밍 80기");
-    System.out.println("강사 : 엄진영");
+    System.out.println("커리큘럼 확인 나중에 만들꺼");
   }
 
   private void doProjectList() {
@@ -84,14 +84,16 @@ public class ClassMenu {
   
   private void makeProject() {
     System.out.println("프로젝트 생성");
+    loginMember.setLevel("y");    
   }
   
   private void doRegister() {
-    System.out.println("프로젝트 멤버 등록");
+    System.out.println("프로젝트 멤버 등록 나중에 만들꺼");
   }
   
   private void doProjectMenu() {
-    proMenu.service();
+    ProjectMember projectMember = new ProjectMember(1, loginMember.getNo());
+    proMenu.service(projectMember, item);
   }
 
   private void doErr() {

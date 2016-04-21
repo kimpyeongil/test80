@@ -43,8 +43,8 @@ public class SubjectMenu {
     System.out.println("수강신청 나중에 만들꺼");
   }
 
-  private void myClass() {
-    classMenu.service(1, loginMember, item);
+  private void myClass() {    
+    classMenu.service(loginMember, item);
   }
 
   private void doErr() {
